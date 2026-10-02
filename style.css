@@ -1,0 +1,75 @@
+/* Fő alkalmazás hátterének finomítása */
+[data-testid="stAppViewContainer"] {
+    background-color: #f4f6f9;
+}
+
+/* Oldalsáv sötét, elegáns dizájnja (aero kék) */
+[data-testid="stSidebar"] {
+    background-color: #2c5282;
+}
+
+/* Minden címsor, bekezdés és gombfelirat fehér legyen az oldalsávban */
+[data-testid="stSidebar"] h1, 
+[data-testid="stSidebar"] h2, 
+[data-testid="stSidebar"] h3, 
+[data-testid="stSidebar"] p, 
+[data-testid="stSidebar"] label {
+    color: #ffffff !important;
+}
+
+/* Gombok stílusának testreszabása */
+.stButton > button {
+    background-color: #2563eb;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+/* Gombok animációja, ha ráviszed az egeret */
+.stButton > button:hover {
+    background-color: #1d4ed8;
+    color: white;
+    transform: scale(1.02);
+}
+
+/* A kék információs dobozok alap stílusa */
+div.stAlert {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* A számok (metrikák) kiemelése a jobb oldalon */
+[data-testid="stMetricValue"] {
+    color: #0f172a;
+    font-weight: 800;
+}
+
+/* 1. Sikeres értesítés (felső doboz) - Kontrasztos Zöld */
+[data-testid="stSidebar"] [data-testid="stAlert"]:first-of-type {
+    background-color: #15803d !important;
+    border: 1px solid #166534 !important;
+    border-radius: 8px !important;
+}
+[data-testid="stSidebar"] [data-testid="stAlert"]:first-of-type p,
+[data-testid="stSidebar"] [data-testid="stAlert"]:first-of-type span {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* 2. Információs doboz (GPS adatok - alsó doboz) - Eredeti Világoskék */
+[data-testid="stSidebar"] [data-testid="stAlert"]:last-of-type {
+    background-color: #e0f2fe !important; 
+    border: 1px solid #bae6fd !important;
+    border-radius: 8px !important;
+}
+
+/* A világoskék dobozban a szöveg sötétkék legyen, hogy tökéletesen olvasható maradjon */
+[data-testid="stSidebar"] [data-testid="stAlert"]:last-of-type p,
+[data-testid="stSidebar"] [data-testid="stAlert"]:last-of-type span,
+[data-testid="stSidebar"] [data-testid="stAlert"]:last-of-type div {
+    color: #0c4a6e !important; 
+    font-weight: 500 !important;
+}
