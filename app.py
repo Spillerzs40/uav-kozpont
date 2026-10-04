@@ -225,9 +225,12 @@ if weather_data:
     elevation = weather_data.get('elevation', 0)
     
     is_daylight = True
-    if daily.get('sunset', [None])[0] and daily.get('sunrise', [None])[0]:
-        most_iso = datetime.now().strftime("%Y-%m-%dT%H:%M")
-        if most_iso > daily['sunset'][0] or most_iso < daily['sunrise'][0]:
+    current_time_str = current.get('time')  # Az API-ból kapott pontos helyi idő
+    sunset_str = daily.get('sunset', [None])[0]
+    sunrise_str = daily.get('sunrise', [None])[0]
+    
+    if current_time_str and sunset_str and sunrise_str:
+        if current_time_str > sunset_str or current_time_str < sunrise_str:
             is_daylight = False
         
     status, message, color = calculate_flight_index(wind_kmh, gust_kmh, temp, visibility_km, kp_index_live, rain, min_tavolsag, dew_point, is_daylight)
