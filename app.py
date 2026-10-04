@@ -23,10 +23,16 @@ FAJL_NEV = "uav_flight_data.db"  # Ezt a fájlt fogja letölteni a felhőből
 
 def letoltes_drive_rol():
     try:
-        # Hitelesítés a Streamlit Secrets-ből (így nem kell feltölteni a json fájlt a GitHubra)
-        creds_dict = json.loads(st.secrets["gcp_credentials"])
-        creds = service_account.Credentials.from_service_account_info(
-            creds_dict, scopes=SCOPES)
+        # Okos hitelesítés: Ha Streamlit Cloudban vagyunk, st.secrets-et használ,
+        # ha helyben teszteljük a gépen, akkor a credentials.json fájlt olvassa.
+        try:
+            creds_dict = json.loads(st.secrets["gcp_credentials"])
+            creds = service_account.Credentials.from_service_account_info(
+                creds_dict, scopes=SCOPES)
+        except:
+            creds = service_account.Credentials.from_service_account_file(
+                "credentials.json", scopes=SCOPES)
+
         service = build('drive', 'v3', credentials=creds)
 
         # Fájl keresése a mappában
